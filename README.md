@@ -60,6 +60,6 @@ Instantiate a new reader
 
 ```
   var reader = new DEMReader(options)
-  reader.readPosition(-122.4183, 37.7750)
+  reader.read(-122.4183, 37.7750, function (num) { return num } )
   #=> 37.223793029785156 (meters)
 ```

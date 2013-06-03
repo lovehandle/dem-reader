@@ -77,7 +77,7 @@ DEMReader.prototype.findColIndex = function (x) {
   }
 }
 
-DEMReader.prototype.readPosition = function (x,y) {
+DEMReader.prototype.read = function (x,y,cb) {
   var row_index = this.findRowIndex(y)
   var col_index = this.findColIndex(x)
   var self      = this
@@ -87,7 +87,7 @@ DEMReader.prototype.readPosition = function (x,y) {
     var position = row_index * col_index * self.num_bytes
 
     fs.read(fd, buffer, 0, self.num_bytes, position, function (err, num, buf) {
-      return buf.readFloatLE(0)
+      cb(buf.readFloatLE(0))
     })
   })
 }
