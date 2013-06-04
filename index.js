@@ -83,12 +83,13 @@ DEMReader.prototype.read = function (x,y,cb) {
   var self      = this
 
   fs.open(this.path, 'r', function (status, fd) {
+    if (status) throw status
+
     var buffer   = new Buffer(self.num_bytes)
     var position = row_index * col_index * self.num_bytes
 
-    fs.read(fd, buffer, 0, self.num_bytes, position, function (err, num, buf) {
-      cb(buf.readFloatLE(0))
-    })
+    return fs.readFileSync(fd, buffer, 0, self.num_bytes, position)
+
   })
 }
 
