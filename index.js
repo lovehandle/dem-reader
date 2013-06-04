@@ -80,17 +80,15 @@ DEMReader.prototype.findColIndex = function (x) {
 DEMReader.prototype.read = function (x,y,cb) {
   var row_index = this.findRowIndex(y)
   var col_index = this.findColIndex(x)
-  var self      = this
 
-  fs.open(this.path, 'r', function (status, fd) {
-    if (status) throw status
+  var fd        = fs.openSync(this.path, 'r')
+  var buffer    = new Buffer(this.num_bytes)
+  var position  = row_index * col_index * this.num_bytes
+  var elevation = fs.readSync(fd, buffer, 0, this.num_bytes, position)
 
-    var buffer   = new Buffer(self.num_bytes)
-    var position = row_index * col_index * self.num_bytes
+  fs.closeSync(fd)
 
-    return fs.readSync(fd, buffer, 0, self.num_bytes, position)
-
-  })
+  return elevation;
 }
 
 module.exports = DEMReader
