@@ -88,7 +88,7 @@ DEMReader.prototype.read = function (x,y,cb) {
     var buffer   = new Buffer(self.num_bytes)
     var position = row_index * col_index * self.num_bytes
 
-    return fs.readFileSync(fd, buffer, 0, self.num_bytes, position)
+    return fs.readSync(fd, buffer, 0, self.num_bytes, position)
 
   })
 }
