@@ -1,4 +1,4 @@
-var fs     = require('fs')
+var fs     = require('graceful-fs')
 var Buffer = require('buffer').Buffer
 var extend = require('extend')
 

@@ -6,6 +6,7 @@
     "url": "git@github.com:rclosner/dem-reader.git"
   },
   "dependencies": {
+    "graceful-fs" : "1.2.1",
     "extend": "*"
   }
 }
